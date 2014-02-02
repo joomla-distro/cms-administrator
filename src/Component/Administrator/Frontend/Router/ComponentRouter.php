@@ -56,16 +56,10 @@ class ComponentRouter extends Router
     protected function fetchController($name)
     {
         // Derive the controller class name.
-        $class = $this->controllerPrefix . ucfirst($name);
-
-        // If the controller class does not exist panic.
-        if (!class_exists($class) || !is_subclass_of($class, 'Joomla\\Controller\\ControllerInterface'))
-        {
-            throw new \RuntimeException(sprintf('Unable to locate controller `%s`.', $class), 404);
-        }
+        $class = $this->controllerPrefix . '\\' . $this->input->getCmd('component', 'Users') . ucfirst($name);
 
         // Instantiate the controller.
-        $controller = new $class($this->input, $this->app);
+        $controller = new $class($this->app->getContainer());
 
         return $controller;
     }

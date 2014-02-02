@@ -70,13 +70,9 @@ final class Dispatcher extends AbstractWebApplication implements ContainerAwareI
                 throw new \RuntimeException('Invalid router file.', 500);
             }
 
-            $input = $this->getInput();
-
-            $base = '\\Component\\'. $input->getCmd('component', 'Users') . '\\Administrator';
-
             $router->addMaps($maps, true);
-            $router->setControllerPrefix($base);
-            $router->setDefaultController('\\Controller\\DefaultController');
+            $router->setControllerPrefix('\\Component');
+            $router->setDefaultController('\\Administrator\\Dispatcher');
             // Fetch the controller
             $component = $router->getController($this->get('uri.route'));
             $component->execute();

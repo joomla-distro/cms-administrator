@@ -1,3 +1,4 @@
 {
-    "admin/:component": "\\Controller\\ComponentController"
+    "administrator": "\\Administrator\\Dispatcher",
+    "administrator/:component": "\\Administrator\\Dispatcher"
 }
